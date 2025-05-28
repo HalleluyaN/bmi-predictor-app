@@ -1,5 +1,5 @@
 streamlit
-tensorflow
+tensorflow-cpu==2.11.1
 scikit-learn
 joblib
 numpy
