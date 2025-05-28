@@ -139,7 +139,7 @@ elif mode == "Take snapshot":
 
 # If we have an image, run prediction
 if img:
-    st.image(img, caption="Your input", use_column_width=True)
+    st.image(img, caption="Your input", use_container_width=True)
     if st.button("🔍 Predict BMI"):
         bmi = predict_bmi(img, interpreter, in_det, out_det, regressor)
         cat = get_bmi_category(bmi)
