@@ -84,10 +84,10 @@ class LiveBMI(VideoTransformerBase):
             )
             cv2.putText(img, f"BMI: {bmi:.1f}", (10, 30),
                         cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        except Exception:
-            pass
-        return img
-
+        except Exception as e:
+            print("Live BMI error:", e)
+        # ✅ Ensure you return RGB instead of BGR
+        return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 # 7) BMI category
 def get_bmi_category(bmi: float) -> str:
     if bmi < 18.5: return "Underweight"
