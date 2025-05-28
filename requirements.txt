@@ -1,5 +1,5 @@
-﻿streamlit
-tensorflow
+streamlit
+tensorflow==2.11.0
 scikit-learn
 joblib
 numpy
@@ -7,3 +7,4 @@ Pillow
 xgboost
 catboost
 lightgbm
+streamlit-webrtc
