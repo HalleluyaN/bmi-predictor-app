@@ -25,19 +25,13 @@ def load_feature_model():
 def load_regressors():
     base = "regressors"
     files = {
-        # "EfficientNet":        "EfficientNetB3_lrsched_bmi_model_quant.pkl",
-        # "VGGFace":             "vggface_stacked_model.pkl",
-        "VGG19":                 "vgg19_svr_model.pkl",
-        "MLP":                   "vgg19_mlp_model.pkl",
-        "Random Forest":         "vgg19_random_forest_model.pkl",
-        # "XGBoost":             "vgg19_xgb_model.pkl",
-        # "KNN":                 "vgg19_knn_model.pkl",
-        # "Ridge":               "vgg19_ridge_model.pkl",
-        # "LightGBM":            "vgg19_lightgbm_model.pkl",
-        # "CatBoost":            "vgg19_catboost_model.pkl",
-        "Ensemble":      "vgg19_ensemble_model.pkl"
+        "VGG19-MLP":      "vgg19_mlp_model.pkl",
+        "VGG19-Ensemble":"vgg19_ensemble_model.pkl"
     }
-    return {name: joblib.load(os.path.join(base, fname)) for name, fname in files.items()}
+    return {
+        name: joblib.load(os.path.join(base, fname))
+        for name, fname in files.items()
+    }
 
 # ——————————————————————————————————————————————————————————————
 # 3) Image preprocessing helper
@@ -113,7 +107,7 @@ regressors = load_regressors()
 model_name = st.selectbox("Choose regression model:", list(regressors.keys()))
 regressor = regressors[model_name]
 
-# Input mode selector
+# Input mode selector with three distinct options
 mode = st.radio(
     "How would you like to provide your image?",
     ["Upload a file", "Take snapshot", "Live webcam"]
@@ -130,23 +124,22 @@ if mode == "Live webcam":
     )
     st.stop()
 
-# Handle upload or snapshot
+# Upload a file
 img = None
 if mode == "Upload a file":
     uploaded = st.file_uploader("Upload an image (JPG/PNG/BMP)", type=["jpg", "jpeg", "png", "bmp"])
     if uploaded:
         img = Image.open(uploaded)
 
+# Take snapshot
 elif mode == "Take snapshot":
     snapped = st.camera_input("Take a photo with your camera")
     if snapped:
         img = Image.open(snapped)
 
-# Display preview and show Predict button
-if img is not None:
+# If we have an image, run prediction
+if img:
     st.image(img, caption="Your input", use_container_width=True)
-
-    # Predict button now always appears once img is set
     if st.button("🔍 Predict BMI"):
         bmi = predict_bmi(img, interpreter, in_det, out_det, regressor)
         cat = get_bmi_category(bmi)
