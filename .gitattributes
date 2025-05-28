@@ -1,2 +1,4 @@
 *.pkl filter=lfs diff=lfs merge=lfs -text
 *.tflite filter=lfs diff=lfs merge=lfs -text
+regressors/vgg19_mlp_model.pkl filter=lfs diff=lfs merge=lfs -text
+regressors/vgg19_svr_model.pkl filter=lfs diff=lfs merge=lfs -text
