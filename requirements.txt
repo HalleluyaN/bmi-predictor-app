@@ -1,5 +1,5 @@
 streamlit
-tensorflow>=2.11.0,<2.13
+tensorflow
 scikit-learn
 joblib
 numpy
