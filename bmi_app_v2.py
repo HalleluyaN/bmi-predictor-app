@@ -163,7 +163,7 @@ elif mode == "Take a photo":
 
 # Prediction UI
 if img is not None:
-    st.image(img, caption="Your input", use_column_width=True)
+    st.image(img, caption="Your input", use_container_width=True)
     if st.button("🔍 Predict BMI"):
         bmi = predict_bmi(
             img,
