@@ -27,15 +27,15 @@ def load_regressors():
     files = {
         # "EfficientNet":        "EfficientNetB3_lrsched_bmi_model_quant.pkl",
         # "VGGFace":             "vggface_stacked_model.pkl",
-        "VGG19":               "vgg19_svr_model.pkl",
-        "VGG19-MLP":           "vgg19_mlp_model.pkl",
-        "VGG19-Random Forest": "vgg19_random_forest_model.pkl",
-        "XGBoost":             "vgg19_xgb_model.pkl",
-        "KNN":                 "vgg19_knn_model.pkl",
-        "Ridge":               "vgg19_ridge_model.pkl",
-        "LightGBM":            "vgg19_lightgbm_model.pkl",
-        "CatBoost":            "vgg19_catboost_model.pkl",
-        "VGG19-Ensemble":      "vgg19_ensemble_model.pkl"
+        "VGG19":                 "vgg19_svr_model.pkl",
+        "MLP":                   "vgg19_mlp_model.pkl",
+        "Random Forest":         "vgg19_random_forest_model.pkl",
+        # "XGBoost":             "vgg19_xgb_model.pkl",
+        # "KNN":                 "vgg19_knn_model.pkl",
+        # "Ridge":               "vgg19_ridge_model.pkl",
+        # "LightGBM":            "vgg19_lightgbm_model.pkl",
+        # "CatBoost":            "vgg19_catboost_model.pkl",
+        "Ensemble":      "vgg19_ensemble_model.pkl"
     }
     return {name: joblib.load(os.path.join(base, fname)) for name, fname in files.items()}
 
