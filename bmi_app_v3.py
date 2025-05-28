@@ -148,7 +148,7 @@ if workflow == "By Gender":
                 snap = st.camera_input("Take a photo")
                 if snap: img = Image.open(snap)
             if img:
-                st.image(img, caption="Your input", use_column_width=True)
+                st.image(img, caption="Your input", use_container_width=True)
                 if st.button("🔍 Predict BMI"):
                     bmi = predict_bmi(img, *load_feature_model(model_type), regressors[model_key],
                                      gender_flag, model_type)
@@ -187,7 +187,7 @@ else:
                 snap = st.camera_input("Take a photo")
                 if snap: img = Image.open(snap)
             if img:
-                st.image(img, caption="Your input", use_column_width=True)
+                st.image(img, caption="Your input", use_container_width=True)
                 if st.button("🔍 Predict BMI"):
                     bmi = predict_bmi(img, interp, in_det, out_det, reg, gender_flag, model_type)
                     st.success(f"📏 Predicted BMI: {bmi:.1f}")
